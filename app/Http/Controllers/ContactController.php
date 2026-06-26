@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class ContactController extends Controller
 {
     /*halaman contact.*/
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('Contact/ContactForm');
     }
 
     /*submit form*/
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'first_name' => ['required', 'string', 'max:50'],
