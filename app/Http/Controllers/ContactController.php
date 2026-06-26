@@ -19,14 +19,48 @@ class ContactController extends Controller
     /*submit form*/
     public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'first_name' => ['required', 'string', 'max:50'],
-            'last_name'  => ['required', 'string', 'max:50'],
-            'email'      => ['required', 'email'],
-            'phone'      => ['required', 'string', 'max:20'],
-            'subject'    => ['required', 'string', 'max:100'],
-            'message'    => ['required', 'string', 'min:10', 'max:2000'],
-        ]);
+    $validated = $request->validate([
+        'first_name' => [
+            'required',
+            'string',
+            'min:2',
+            'max:50',
+        ],
+
+        'last_name' => [
+            'required',
+            'string',
+            'min:2',
+            'max:50',
+        ],
+
+        'email' => [
+            'required',
+            'email:rfc,dns',
+            'ends_with:@student.unsri.ac.id',
+        ],
+
+        'phone' => [
+            'required',
+            'regex:/^[0-9+\-\s]+$/',
+            'min:10',
+            'max:20',
+        ],
+
+        'subject' => [
+            'required',
+            'string',
+            'min:10',
+            'max:100',
+        ],
+
+        'message' => [
+            'required',
+            'string',
+            'min:10',
+            'max:2000',
+        ],
+    ]);
 
         Contact::create($validated);
 

@@ -49,7 +49,7 @@ export default function ContactForm() {
                 </div>
 
                 {/*Sukses Selalu*/}
-                {flash?.success && (
+                {flash.success && (
                     <div className="mb-6 rounded-lg bg-green-100 p-4 text-green-700">
                         {flash.success}
                     </div>
@@ -132,7 +132,7 @@ export default function ContactForm() {
                                 onChange={(e) =>
                                     setData("email", e.target.value)
                                 }
-                                placeholder="example@email.com"
+                                placeholder="nim@student.unsri.ac.id"
                                 className={`w-full rounded-lg border px-4 py-3 transition-all duration-200 outline-none
                                     ${
                                         errors.email
